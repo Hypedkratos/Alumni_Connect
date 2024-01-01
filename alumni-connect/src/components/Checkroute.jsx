@@ -1,3 +1,4 @@
+'use client'
 import { usePathname } from 'next/navigation'
 import React from 'react'
 
@@ -5,9 +6,9 @@ const Checkroute = () => {
     const path = usePathname();
     
   return (
-    <div>
-      
-    </div>
+    <>   
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    </>
   )
 }
 
