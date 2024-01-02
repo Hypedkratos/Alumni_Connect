@@ -21,9 +21,19 @@ const page = () => {
               </div>
               <div className="flex flex-wrap mx-[10%] w-full">
                 <TeamCard
-                  name="Rathin Gorai"
+                  name="Rathin Kumar Gorai"
                   image={"https://raw.githubusercontent.com/Loopple/loopple-public-assets/main/riva-dashboard-tailwind/img/avatars/avatar11.jpg"}
                   experties={"Full Stack Devloper"}
+                />
+                <TeamCard
+                  name="Shashi Anand Sharma" 
+                  image='https://raw.githubusercontent.com/Loopple/loopple-public-assets/main/riva-dashboard-tailwind/img/avatars/avatar11.jpg'
+                  experties='Full Stack Devloper'
+                />
+                <TeamCard
+                  name="Shashi Anand Sharma" 
+                  image='https://raw.githubusercontent.com/Loopple/loopple-public-assets/main/riva-dashboard-tailwind/img/avatars/avatar11.jpg'
+                  experties='Full Stack Devloper'
                 />
                 <TeamCard
                   name="Shashi Anand Sharma" 
