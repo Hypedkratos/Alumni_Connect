@@ -1,5 +1,5 @@
 import { Inter } from 'next/font/google'
-import '../globals.css'
+import '@/app/globals.css'
 import { Checkroute, Footer, Navbar } from '@/components'
 import { Toaster } from 'react-hot-toast';
 const inter = Inter({ subsets: ['latin'] })
