@@ -1,20 +1,56 @@
 'use client'
+import { createUserAccount } from '@/appwrite/appwrite';
 import Link from 'next/link'
+import { useRouter } from 'next/navigation';
 import { useState } from 'react'
+import toast from 'react-hot-toast';
 
 const page = () => {
-
+    const router = useRouter();
     const [showPassword, setShowPassword] = useState(false);
-    const [type,setType] = useState('password');
-    const handleCheckboxToggle = () =>{
+    const [type, setType] = useState('password');
+
+    const [formData, setFormData] = useState({
+        name: '',
+        gender: '', 
+        rollnumber: '',
+        email: '',
+        password: ''
+    });
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            // const res = await account.create(ID.unique(), formData.email, formData.password, formData.name)
+            const res = await createUserAccount(formData)
+            console.log(formData)
+            if (res) {
+                toast.success(formData.name + "account created successfully")
+                router.push('/login')
+            }
+
+        } catch (error) {
+            console.log("error in handleSubmit", error)
+            toast.error("something went wrong in creating your account")
+        }
+    }
+
+
+    const handleCheckboxToggle = () => {
         setShowPassword(!showPassword);
-        if(!showPassword) {
+        if (!showPassword) {
             setType('text');
         } else {
             setType('password');
         }
     }
 
+    const genderOptions = ['Male', 'Female', 'Other'];
     return (
         <>
 
@@ -25,37 +61,67 @@ const page = () => {
                         src="https://wallpaperswide.com/download/laptop-wallpaper-1440x900.jpg"
                         alt="Placeholder Image"
                         className="object-cover w-full h-full"
-                        
+
                     />
                 </div>
                 {/* Right: Login Form */}
                 <div className="lg:p-36 md:p-52 sm:20 p-8 w-full lg:w-1/2">
                     <h1 className="text-2xl font-semibold mb-4">Signup</h1>
-                    <form action="#" method="POST">
+                    <form onSubmit={handleSubmit} method="POST">
                         {/* Username Input */}
                         <div className="mb-4">
-                            <label htmlFor="username" className="block text-gray-600">
+                            <label htmlFor="name" className="block text-gray-600">
                                 Full Name
                             </label>
                             <input
                                 type="text"
-                                id="username"
-                                name="username"
+                                id="name"
+                                name="name"
                                 className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
                                 autoComplete="off"
+                                value={formData.name}
+                                onChange={handleChange}
+                                required
                             />
+                        </div>
+                        {/* gender select  */}
+                        <div className="mb-4">
+                            <label htmlFor="gender" className="block text-gray-600 ">
+                                Gender
+                            </label>
+                            <select
+                                id="gender"
+                                name="gender"
+                                className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
+                                value={formData.gender}
+                                onChange={handleChange}
+                                required
+
+                            >
+                                <option value="" disabled>
+                                    Select Gender
+                                </option>
+                                {genderOptions.map((option, index) => (
+                                    <option key={index} value={option}>
+                                        {option}
+                                    </option>
+                                ))}
+                            </select>
                         </div>
                         {/* Roll Number Input  */}
                         <div className="mb-4">
-                            <label htmlFor="username" className="block text-gray-600">
+                            <label htmlFor="rollnumber" className="block text-gray-600">
                                 Roll no
                             </label>
                             <input
                                 type="text"
-                                id="roll"
-                                name="roll"
+                                id="rollnumber"
+                                name="rollnumber"
                                 className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
                                 autoComplete="off"
+                                value={formData.rollnumber}
+                                onChange={handleChange}
+                                required
                             />
                         </div>
 
@@ -70,6 +136,9 @@ const page = () => {
                                 name="email"
                                 className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
                                 autoComplete="off"
+                                value={formData.email}
+                                onChange={handleChange}
+                                required
                             />
                         </div>
 
@@ -84,6 +153,9 @@ const page = () => {
                                 name="password"
                                 className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
                                 autoComplete="off"
+                                value={formData.password}
+                                onChange={handleChange}
+                                required
                             />
                         </div>
                         {/* Remember Me Checkbox */}

@@ -1,6 +1,11 @@
-import React from 'react'
+'use client'
 
 const page = () => {
+
+  const handleSubmit= () => {
+    e.preventDefault();
+
+  }
   return (
     <div>
       <>
@@ -41,7 +46,7 @@ const page = () => {
         </div>
         <div className="w-full lg:w-1/2 xl:w-5/12 px-4">
           <div className="bg-white relative rounded-lg p-8 sm:p-12 shadow-lg">
-            <form>
+            <form onSubmit={handleSubmit} method="POST">
               <div className="mb-6">
                 <input
                   type="text"
@@ -57,6 +62,7 @@ const page = () => {
                   focus-visible:shadow-none
                   focus:border-primary
                   "
+                  required
                 />
               </div>
               <div className="mb-6">
@@ -74,6 +80,7 @@ const page = () => {
                   focus-visible:shadow-none
                   focus:border-primary
                   "
+                  required
                 />
               </div>
               <div className="mb-6">
@@ -91,6 +98,7 @@ const page = () => {
                   focus-visible:shadow-none
                   focus:border-primary
                   "
+                  required
                 />
               </div>
               <div className="mb-6">
@@ -109,6 +117,7 @@ const page = () => {
                   focus-visible:shadow-none
                   focus:border-primary
                   "
+                  required
                   defaultValue={""}
                 />
               </div>

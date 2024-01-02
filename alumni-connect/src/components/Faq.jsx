@@ -3,7 +3,7 @@ import React from 'react'
 const Faq = () => {
   return (
     <div>
-      <div className="p-8">
+      <div className="lg:p-8 p-3">
         <div className="bg-white p-4 rounded-lg shadow-xl pt-0 py-8 mt-12">
           <h4 className="text-4xl font-bold text-gray-800 tracking-widest uppercase text-center">
             FAQ
